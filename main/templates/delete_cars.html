@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block heading%}Cars{%endblock%}
+{% block sub_heading %} Cars delete {%endblock%}
+{% block content %}
+
+<a href="{% url 'add_cars' %}"> <button class="btn btn-primary mb-5">Add new </button></a>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Cars info
+    </div>
+    <div class="card-body">
+        <p>
+
+            <strong> are you sure to delete "{{ db.model }}" </strong> <br><br>
+            <form method="POST", action="{% url 'delete_cars' db.id %}"> {% csrf_token %}
+            <button type="submit" class="btn btn-danger"> Yes </button>
+            </form>
+            <br>
+            <button class="btn btn-primary"> No </button>
+
+        </p>
+    </div>
+</div>
+
+{% endblock %}

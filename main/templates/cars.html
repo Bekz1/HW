@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block heading %}
+Car's catalog
+{% endblock %}
+
+{% block sub_heading %}
+<i>Cars DB</i>
+{% endblock %}
+
+{% block content %}
+<h3>Car models are listed below</h3>
+
+<div class="card mb-4">
+    
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Cars        <button type="button" class="btn btn-primary" style="margin-left: 20px;">
+            <a href="{% url 'add_cars'%}"><h6 style="color: aliceblue;">Add Cars</h6></a>
+        </button>
+    </div>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Number</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for db in db%}
+            <tr>
+                <<th>{{db.brand}}</th>
+                <th>{{db.model}}</th>
+                <th>{{db.color}}</th>
+                <th>{{db.number}}</th>
+                <th><button type="button" class="btn btn-primary">
+                    <a href="edit/{{db.id}}/">Edit</a>
+                </button></th>
+                <th><button type="button" class="btn btn-danger"><a href="delete/{{db.id}}/">Delete</a></button></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+{% endblock %}

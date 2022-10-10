@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block heading%}Driver catalog{%endblock%}
+{% block sub_heading %} You can add/delete and edit your drivers {%endblock%}
+{% block content %}
+<div class="card mb-4 p-1">
+  <div class="card-header">
+      <i class="fas fa-chart-area me-1"></i>
+      Add Drivers
+  </div>
+  <form method="POST" action="{% url 'add_drivers' %}"> {% csrf_token %}
+    <div class="form-group m-2">
+      <label for="formGroupExampleInput">First Name</label>
+      <input type="text" name="first_name" class="form-control"  placeholder="Enter first name">
+    </div>
+
+    <div class="form-group m-2">
+      <label for="formGroupExampleInput2">Last Name</label>
+      <input type="text" name="last_name" class="form-control"  placeholder="Enter last name">
+    </div>
+
+    <div class="form-group m-2">
+      <label for="formGroupExampleInput2">Available cars</label>
+      <select name="cars">
+        {% for cars in db.car%}
+        <option name="options">{{cars}}</option>
+       {%endfor%}
+      </select>
+    </div>
+    
+    
+    <div class="form-group m-2">
+    <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+{% endblock %}
