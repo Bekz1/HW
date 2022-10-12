@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block heading%}Cars{%endblock%}
+{% block sub_heading %} The complete info on the car model {{car.name}}{%endblock%}
+{% block content %}
+
+<a href="{% url 'add_cars' %}"> <button class="btn btn-primary mb-5">Add Cars </button></a>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Car catalog
+    </div>
+    <div class="card-body">
+        <p>
+            <h2>Brand: {{ car.brand }}</h2>
+            <h2>Model:  {{ car.model }}</h2>
+            <h2>Color:  {{ car.color }}</h2>
+            <h2>Number:  {{ car.number }}</h2>
+        </p>
+    </div>
+</div>
+<div class="card-body">
+    <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>First Name</th> 
+                <th>Last Name</th>
+                
+                <th>Actions</th>
+
+                
+               
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>First Name</th> 
+                <th>Last Name</th>
+                <th>Actions</th>
+                
+
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for driver in driver %}
+            <tr>
+                <<th>{{driver.first_name}}</th>
+                <th>{{driver.last_name}}</th>
+                <td> 
+                    <a href="{% url 'delete_drivers' driver.id %}"> <button class="btn btn-sm btn-danger m-1"> Delete </button></a>
+                
+                </td>
+                
+            </tr>
+            {% endfor %}
+           
+            
+            
+            
+        </tbody>
+    </table>
+    <a href="{% url 'add_drivers' %}"> <button class="btn btn-primary mb-5">Add new drivers </button></a>
+
+</div>
+
+{% endblock %}

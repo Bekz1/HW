@@ -43,10 +43,10 @@ Car's catalog
                 <th>{{db.model}}</th>
                 <th>{{db.color}}</th>
                 <th>{{db.number}}</th>
-                <th><button type="button" class="btn btn-primary">
-                    <a href="edit/{{db.id}}/">Edit</a>
-                </button></th>
-                <th><button type="button" class="btn btn-danger"><a href="delete/{{db.id}}/">Delete</a></button></th>
+                <th> <a href="{% url 'view_cars' db.id  %}"><button class="btn btn-sm btn-primary m-1"> View </button> </a>
+                    <a href="{% url 'edit_cars' db.id %}"> <button class="btn btn-sm btn-info m-1"> Edit </button> </a>
+                    <a href="{% url 'delete_cars' db.id %}"> <button class="btn btn-sm btn-danger m-1"> Delete </button></a>
+                </th>
             </tr>
             {% endfor %}
         </tbody>

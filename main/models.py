@@ -12,6 +12,6 @@ class Cars(models.Model):
 class Drivers(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    car = models.ManyToManyField(Cars)
+    car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     def __str__(self):
         return self.first_name

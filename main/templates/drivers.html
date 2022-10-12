@@ -24,14 +24,15 @@ Drivers catalog
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Cars</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Cars</th>
+                <th>Actions</th>
+
             </tr>
         </tfoot>
         <tbody>
@@ -39,15 +40,16 @@ Drivers catalog
             <tr>
                 <<th>{{db.first_name}}</th>
                 <th>{{db.last_name}}</th>
-                <th>{% for db in db.car.all %}
-                    <p>{{db}}</p>
-                    {%endfor%}
-                </th>
                 
-                <th><button type="button" class="btn btn-primary">
-                    <a href="edit/{{db.id}}/">Edit</a>
-                </button></th>
-                <th><button type="button" class="btn btn-danger"><a href="delete/{{db.id}}/">Delete</a></button></th>
+                
+                <th>
+                
+                <button type="button" class="btn btn-sm btn-info m-1">
+                <a href="{% url 'edit_drivers' db.id %}">Edit</a></button>   
+                <button type="button" class="btn btn-sm btn-danger m-1">
+                <a href="delete/{{db.id}}/">Delete</a></button>
+
+            </th>
             </tr>
             {% endfor %}
         </tbody>

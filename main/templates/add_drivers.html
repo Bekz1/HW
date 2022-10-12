@@ -17,15 +17,17 @@
       <label for="formGroupExampleInput2">Last Name</label>
       <input type="text" name="last_name" class="form-control"  placeholder="Enter last name">
     </div>
+    <div class="form-group mb-2">
+      <label for="illness_select">Select Car</label>
 
-    <div class="form-group m-2">
-      <label for="formGroupExampleInput2">Available cars</label>
-      <select name="cars">
-        {% for cars in db.car%}
-        <option name="options">{{cars}}</option>
-       {%endfor%}
+      <select name="car" id="car_select"  class="form-control">
+        {% for db in db %}
+        <option value="{{ db.id }}">{{db.model}}</option>
+        {% endfor %}
       </select>
+      
     </div>
+   
     
     
     <div class="form-group m-2">

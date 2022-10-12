@@ -1,8 +1,7 @@
-import re
-from unicodedata import name
 from django.shortcuts import render, redirect
 from .models import Cars, Drivers
 # Create your views here.
+
 def base(request):
     return render(request, "base.html")
 
@@ -38,6 +37,7 @@ def edit_cars(request, pk):
         db.color = color
         db.number = number
         db.save()
+       
         return redirect("cars")
         
         
@@ -45,6 +45,14 @@ def edit_cars(request, pk):
         db = Cars.objects.get(id=pk)
         context = {"db": db}
         return render(request, "edit_cars.html", context=context)
+def view_cars(request, pk):
+     if request.method == "GET":
+        car = Cars.objects.get(id=pk)
+        driver = Drivers.objects.filter(car=car)
+        context = {"car": car, "driver":driver}
+        return render(request, "info_cars.html", context=context)
+    
+
     
 def delete_cars(request, pk):
     if request.method == "POST":
@@ -61,13 +69,52 @@ def drivers(request):
     return render(request, 'drivers.html', {'db':db})
 
 def add_drivers(request):
-    db = Drivers.objects.all()
+   
     if request.method == "POST":
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
-        cars = request.POST.get("cars")
+        car = int(request.POST.get('car'))
+        driver  =Drivers.objects.create(first_name=first_name, last_name=last_name, car = car)
+        print(driver)    
         
-        drivers  = Drivers.objects.create(first_name=first_name, last_name=last_name, cars=cars)
-        return redirect("drivers")
+        return redirect("cars")
+    db = Cars.objects.all()
+
     return render(request, "add_drivers.html", {'db':db})
+
+
+def delete_drivers(request, pk):
+    if request.method == "POST":
+        db = Drivers.objects.get(id=pk)
+        db.delete()
+        return redirect("cars")
+    if request.method == "GET":
+        db = Drivers.objects.get(id=pk)
+        context = {"db": db}
+        return render(request, "delete_drivers.html", context=context)
+    pass
+
+def edit_drivers(request, pk):
+    if request.method == "POST":
+        
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
     
+        
+        db = Drivers.objects.get(id=pk)
+        
+        
+        db.first_name = first_name
+        db.last_name = last_name
+
+        db.save()
+      
+       
+        return redirect("drivers")
+        
+        
+    if request.method == "GET":
+        db = Drivers.objects.get(id=pk)
+        context = {"db": db}
+        return render(request, "edit_drivers.html", context=context)
+
