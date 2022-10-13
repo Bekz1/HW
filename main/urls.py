@@ -11,11 +11,13 @@ urlpatterns = [
     path('cars/delete/<int:pk>/', views.delete_cars, name='delete_cars'),
 
     path('drivers/', views.drivers, name='drivers'),
-    path('/drivers/add/', views.add_drivers, name='add_drivers'),
-    path('/drivers/edit/<int:pk>/', views.edit_drivers, name='edit_drivers'),
-    path('/drivers/delete/<int:pk>/', views.delete_drivers, name='delete_drivers'),
+    path('drivers/add/', views.add_drivers, name='add_drivers'),
+    path('drivers/edit/<int:pk>/', views.edit_drivers, name='edit_drivers'),
+    path('drivers/delete/<int:pk>/', views.delete_drivers, name='delete_drivers'),
    
 
-
+    path('register/', views.register_page, name='register_page'),
+    path('login/', views.login_page, name='login_page'),
+    path('logout/', views.logout_page, name='logout_page'),
     
 ]

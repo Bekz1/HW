@@ -34,7 +34,8 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout_page'%}">Logout</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -62,8 +63,12 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">Logged in as: {{request.user}}</div>
+                        <div class="small">
+                            <a href="{% url 'logout_page' %}"><button type="submit" class="btn btn-danger">Logout</button></a>
+                            </div>
+
+                        
                     </div>
                 </nav>
             </div>
@@ -74,6 +79,9 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">{%block sub_heading %} {% endblock%}</li>
                         </ol>
+                        {% if request.user.is_authenticated %}
+                        <p>Hello, {{request.user}}</p>
+                        {% endif %}
                         {% block content %}
 
                         {% endblock %}
